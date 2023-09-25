@@ -8,22 +8,34 @@ const Join = () => {
   return (
     <>
       <div>
-        <form action="">
-          <div className="joinOuterContainer">
-            <div className="joinInnerContainer">
-              <h1 className="heading">Join</h1>
-              <div>
-                <input placeholder="Name" className="joinInput" type="text" onChange={(event) => setName(event.target.value)} />
+          <div className="container-fluid joinInnerContainer">
+            <div className="row">
+                <div className='shadow mx-auto col-6'>
+                    <form action="" className=''>
+                        <h1 className="text-center text-success">Join</h1>
+                        
+                        <div>
+                          <input placeholder="Name" 
+                              className="joinInput form-control" 
+                              type="text" 
+                              onChange={(event) => setName(event.target.value)} />
+                        </div>
+                        <div>
+                          <input placeholder="Room" 
+                            className="joinInput mt-20 form-control" 
+                            type="text" 
+                            onChange={(event) => setRoom(event.target.value)} />
+                        </div>
+
+                            <div className='mb-3'>
+                              <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+                                <button className='bg-success button mt-20' type="submit">Sign In</button>
+                              </Link>
+                            </div>
+                      </form>
+                </div>
               </div>
-              <div>
-                <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)} />
-              </div>
-              <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                <button className={'button mt-20'} type="submit">Sign In</button>
-              </Link>
             </div>
-          </div>
-        </form>
       </div>
     </>
   )
