@@ -10,7 +10,7 @@ import Input from '../input/Input';
 import './chat.css';
 
 // Define the endpoint for the socket.io server (replace with your actual server address)
-const ENDPOINT = 'http:localhost';
+const ENDPOINT = 'http://localhost:4000';
 
 let socket;
 

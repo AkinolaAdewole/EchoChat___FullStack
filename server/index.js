@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 
 dotenv.config()
 
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server)
