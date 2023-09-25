@@ -2,7 +2,7 @@
 const users = [];
 
 // Function to add a user to the 'users' array
-const addUser = ({ id, name, room }) => {
+const addUser = async({ id, name, room }) => {
   // Trim and convert username and room name to lowercase for consistency
   name = name.trim().toLowerCase();
   room = room.trim().toLowerCase();
@@ -25,7 +25,7 @@ const addUser = ({ id, name, room }) => {
 }
 
 // Function to remove a user from the 'users' array by their ID
-const removeUser = (id) => {
+const removeUser = async(id) => {
   const index = users.findIndex((user) => user.id === id);
 
   // If the user is found, remove them from the array and return the removed user
@@ -33,10 +33,10 @@ const removeUser = (id) => {
 }
 
 // Function to retrieve a user by their ID
-const getUser = (id) => users.find((user) => user.id === id);
+const getUser = async(id) => users.find((user) => user.id === id);
 
 // Function to retrieve all users in a specific room
-const getUsersInRoom = (room) => users.filter((user) => user.room === room);
+const getUsersInRoom = async(room) => users.filter((user) => user.room === room);
 
 // Export these functions to be used in other parts of your application
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };
