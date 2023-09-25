@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 
 import './chat.css';
 
-const ENDPOINT = 'http://localhost:4000';
+const ENDPOINT = 'http://localhost:3200';
 
 let socket;
 

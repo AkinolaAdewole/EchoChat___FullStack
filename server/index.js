@@ -13,8 +13,8 @@ const server = http.createServer(app);
 const io = socketio(server)
 
 app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true, // Enable credentials (e.g., cookies) if needed
+  origin: '*',
+  methods: ["POST", "PUT", "GET"],
 }));
 
 // Set up an event listener for when a client connects to the server using Socket.IO
@@ -95,6 +95,26 @@ app.get("/", (req, res) => {
     res.json({ message: 'This route has customized CORS settings.' });
   });
   
+
+  app.get('/chat:id', cors({
+    origin: 'http://localhost:3000', // Specify the allowed origin(s)
+    methods: 'GET,POST', // Specify the allowed HTTP methods
+    headers: 'Authorization', // Specify the allowed headers
+    credentials: true, // Enable credentials (e.g., cookies)
+  }), (req, res) => {
+    // Your route handler logic goes here
+    res.json({ message: 'This route has customized CORS settings.' });
+  });
+
+  app.post('/chat:id', cors({
+    origin: 'http://localhost:3000', // Specify the allowed origin(s)
+    methods: 'GET,POST', // Specify the allowed HTTP methods
+    headers: 'Authorization', // Specify the allowed headers
+    credentials: true, // Enable credentials (e.g., cookies)
+  }), (req, res) => {
+    // Your route handler logic goes here
+    res.json({ message: 'This route has customized CORS settings.' });
+  });
 
 const PORT = process.env.PORT
 server.listen(PORT,()=>{
