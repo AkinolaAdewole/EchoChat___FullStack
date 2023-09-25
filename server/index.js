@@ -76,7 +76,17 @@ app.get("/", (req, res) => {
   });
 
   app.get('/chat', cors({
-    origin: 'http://localhost:3000/chat', // Specify the allowed origin(s)
+    origin: 'http://localhost:3000', // Specify the allowed origin(s)
+    methods: 'GET,POST', // Specify the allowed HTTP methods
+    headers: 'Authorization', // Specify the allowed headers
+    credentials: true, // Enable credentials (e.g., cookies)
+  }), (req, res) => {
+    // Your route handler logic goes here
+    res.json({ message: 'This route has customized CORS settings.' });
+  });
+
+  app.post('/chat', cors({
+    origin: 'http://localhost:3000', // Specify the allowed origin(s)
     methods: 'GET,POST', // Specify the allowed HTTP methods
     headers: 'Authorization', // Specify the allowed headers
     credentials: true, // Enable credentials (e.g., cookies)

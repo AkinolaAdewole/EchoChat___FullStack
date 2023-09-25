@@ -6,6 +6,7 @@ import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../messages/Messages';
 import InfoBar from '../infoBar/InfoBar';
 import Input from '../input/Input';
+import { useLocation } from 'react-router-dom';
 
 import './chat.css';
 
@@ -13,27 +14,35 @@ const ENDPOINT = 'http://localhost:4000';
 
 let socket;
 
-const Chat = ({ location }) => {
+const Chat = () => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
+  const location = useLocation();
+
+    // Access the query string part of the URL.
+    const search = location.search;
+
+
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
-
-    socket = io(ENDPOINT);
-
-    setRoom(room);
-    setName(name)
-
-    socket.emit('join', { name, room }, (error) => {
-      if(error) {
-        alert(error);
-      }
-    });
+    const { name, room } = queryString.parse(search);
+  
+    if (name && room) {
+      socket = io(ENDPOINT);
+      setRoom(room);
+      setName(name);
+  
+      socket.emit('join', { name, room }, (error) => {
+        if (error) {
+          alert(error);
+        }
+      });
+    }
   }, [ENDPOINT, location.search]);
+  
   
   useEffect(() => {
     socket.on('message', message => {
