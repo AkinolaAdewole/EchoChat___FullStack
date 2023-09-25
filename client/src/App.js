@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Routes, Route } from "react-router-dom";
 import Join from './components/join/Join';
-import Chat from './components/Chat';
+import Chat from './components/chat/Chat';
 
 function App() {
   return (
