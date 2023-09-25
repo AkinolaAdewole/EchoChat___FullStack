@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Join from './components/join/Join';
 import Chat from './components/chat/Chat';
 
 function App() {
   return (
    <>
-      <Routes>
-        <Route path='/' exact Component={Join} />
-        <Route path='/client' Component={Chat} />
-      </Routes>
+      <Router>
+        <Routes>
+            <Route path='/' exact Component={Join} />
+            <Route path='/chat' Component={Chat} />
+        </Routes>
+      </Router>
    </>
   );
 }

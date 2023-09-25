@@ -12,7 +12,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server)
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true, // Enable credentials (e.g., cookies) if needed
+}));
 
 // Set up an event listener for when a client connects to the server using Socket.IO
 io.on('connect', (socket) => {

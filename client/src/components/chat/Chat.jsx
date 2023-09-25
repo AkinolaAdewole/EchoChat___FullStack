@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
+import { useLocation } from "react-router-dom";
 
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../messages/Messages';
@@ -15,13 +16,15 @@ const ENDPOINT = 'http://localhost:4000';
 let socket;
 
 // Define the Chat component
-const Chat = ({ location }) => {
+const Chat = () => {
   // Initialize state variables using the useState hook
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+
+  const location = useLocation();
 
   useEffect(() => {
     // Parse the 'name' and 'room' from the URL query parameters
@@ -40,7 +43,7 @@ const Chat = ({ location }) => {
         alert(error); // Display an alert if there's an error
       }
     });
-  }, [ENDPOINT, location.search]);
+  }, [ENDPOINT]);
 
   useEffect(() => {
     // Listen for incoming 'message' events from the server and update the 'messages' state
